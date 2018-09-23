@@ -22,7 +22,7 @@ void Display_Task(void const * argument)
     //LCD_set_XY(6,6);
     //LCD_Display_float(1.11f,10,1);
     //LCD_write_char('C');
-    LCD_Write_string(string,0,0);
+    LCD_Write_string(string,3,0);
     osDelay(5);
   }
 }
