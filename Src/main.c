@@ -50,6 +50,7 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
@@ -105,8 +106,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_USART1_UART_Init();
+  MX_UART5_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-  BSP_Init();                       //≥ı ºªØBSP
+  BSP_Init(); 
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

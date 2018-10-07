@@ -14,6 +14,13 @@
 #include "gpio.h"
 
 /* Private function prototypes ---------------------------------------------------*/
+extern uint8_t Pixy_Temp[18];
+extern uint8_t RePixy_buf[18],Re_Counter;
+extern UART_HandleTypeDef huart1;
+
+extern UART_HandleTypeDef huart4;
+extern uint8_t Laser_buff[20];    //»º´æ
+extern uint8_t buff;
 
 void BSP_Init(void);
 

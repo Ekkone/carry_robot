@@ -18,7 +18,9 @@ void Run_Task(void const * argument)
 {
   for(;;)
   {
-    osDelay(5);
+    HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_14);
+    
+    osDelay(500);
   }
 }
 

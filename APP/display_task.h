@@ -11,6 +11,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "cmsis_os.h"
 #include "bsp.h"
+#include "Pixy_Camera.h"
 /* Private function prototypes -----------------------------------------------*/
 
 void Display_Task(void const * argument);
