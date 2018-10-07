@@ -135,11 +135,11 @@ float pid_calc(pid_t* pid, float get, float set){
     pid->get[NOW] = get;
     pid->set[NOW] = set;
     pid->err[NOW] = set - get;	//set - measure
-    ec = (pid->err[NOW] - pid->err[LAST]) / 0.005; 
+    ec = pid->err[NOW] - pid->err[LAST]; 
   
-    p = FUZZY_Calc(pid->err[NOW],ec,pid->ec_max,pid->ec_max,pid->p);
-    i = FUZZY_Calc(pid->err[NOW],ec,pid->ec_max,pid->ec_max,pid->i);
-    p = FUZZY_Calc(pid->err[NOW],ec,pid->ec_max,pid->ec_max,pid->d);
+    p = FUZZY_Calc_Kp(pid->err[NOW],ec,pid->ec_max,pid->ec_max,pid->p);
+    i = FUZZY_Calc_Ki(pid->err[NOW],ec,pid->ec_max,pid->ec_max,pid->i);
+    d = FUZZY_Calc_Kd(pid->err[NOW],ec,pid->ec_max,pid->ec_max,pid->d);
   
     if (pid->max_err != 0 && ABS(pid->err[NOW]) >  pid->max_err  )
 		return 0;
