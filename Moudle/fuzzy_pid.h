@@ -14,7 +14,9 @@
 /* Private function prototypes ---------------------------------------------------*/
 
 
-float FUZZY_Calc(float e,float ec,float e_max,float ec_max,float fuzzy_max);
+float FUZZY_Calc_Kp(float e,float ec,float e_max,float ec_max,float fuzzy_max);
+float FUZZY_Calc_Ki(float e,float ec,float e_max,float ec_max,float fuzzy_max);
+float FUZZY_Calc_Kd(float e,float ec,float e_max,float ec_max,float fuzzy_max);
 
 
 

@@ -18,14 +18,13 @@ extern float Distance;				       //æ‡¿Î
 
 void Display_Task(void const * argument)
 {
-  
   for(;;)
   {
-    Pixy_Camera_Data();
-    LCD_Display_float(Pixy.Pixy_Color_Sig,1,1);
-    LCD_Display_float(Pixy.Pixy_Color_PosX,1,2);
-    LCD_Display_float(Pixy.Pixy_Color_PosY,1,3);
-    LCD_Display_int(Distance,1,4);
+//    Pixy_Camera_Data();
+//    LCD_Display_float(Pixy.Pixy_Color_Sig,1,1);
+//    LCD_Display_float(Pixy.Pixy_Color_PosX,1,2);
+//    LCD_Display_float(Pixy.Pixy_Color_PosY,1,3);
+//    LCD_Display_int(Distance,1,4);
 //    LCD_Display_int(Pixy.Pixy_Color_Height,1,5);
 //    LCD_Display_int(RePixy_buf[0],1,1);
 //    LCD_Display_int(RePixy_buf[1],1,2);
@@ -35,6 +34,7 @@ void Display_Task(void const * argument)
 //    LCD_Display_int(RePixy_buf[5],1,6);
     osDelay(5);
   }
+  
 }
 
 
