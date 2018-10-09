@@ -57,16 +57,13 @@ void Display_Task(void const * argument)
     cc[9] = 0x02;
     cc[10]= 0xd3;
 //  	taskENTER_CRITICAL();  //序秘匝順粁
-    HAL_HalfDuplex_EnableTransmitter(&huart5);
 
     
     HAL_UART_Transmit(&huart5,cc,11,10);
     
-    HAL_HalfDuplex_EnableReceiver(&huart5);
     
     HAL_UART_Receive(&huart5,re,11,2000);
     
-    /*恣返公嘔返。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。*/
     
     osDelay(5);
   }
