@@ -27,6 +27,8 @@ void Display_Task(void const * argument)
 
   HAL_Delay(100);
   int num = 0;
+  uint8_t re[11];
+  uint8_t cc[11];
   for(;;)
   {
 //    Pixy_Camera_Data();
@@ -42,26 +44,27 @@ void Display_Task(void const * argument)
     LCD_Display_int(receive.PARAMETER[3],1,7);
     //Set_AX(11,1024,299);
     
-    uint8_t ch[11];
-    ch[0] = 0xff;
-    ch[1] = 0xff;
-    ch[2] = 0x0b;
-    ch[3] = 0x07;
-    ch[4] = 0x03;
-    ch[5] = 0x1e;
-    ch[6] = 0x00;
-    ch[7] = 0x02;
-    ch[8] = 0x00;
-    ch[9] = 0x02;
-    ch[10]= 0xd3;
-//  	taskENTER_CRITICAL();  //序秘匝順粁
-
-    if(num < 1)
-    {
-      HAL_UART_Transmit(&huart5,ch,11,1);
-      num++;
-    }
     
+    cc[0] = 0xff;
+    cc[1] = 0xff;
+    cc[2] = 0x0b;
+    cc[3] = 0x07;
+    cc[4] = 0x03;
+    cc[5] = 0x1e;
+    cc[6] = 0x00;
+    cc[7] = 0x02;
+    cc[8] = 0x00;
+    cc[9] = 0x02;
+    cc[10]= 0xd3;
+//  	taskENTER_CRITICAL();  //序秘匝順粁
+    HAL_HalfDuplex_EnableTransmitter(&huart5);
+
+    
+    HAL_UART_Transmit(&huart5,cc,11,10);
+    
+    HAL_HalfDuplex_EnableReceiver(&huart5);
+    
+    HAL_UART_Receive(&huart5,re,11,2000);
     
     /*恣返公嘔返。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。*/
     
