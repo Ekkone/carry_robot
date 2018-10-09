@@ -101,6 +101,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+	taskENTER_CRITICAL();  //进入临界段
 
   /* USER CODE END SysInit */
 
@@ -111,14 +112,16 @@ int main(void)
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
   BSP_Init(); 
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
   MX_FREERTOS_Init();
+  taskEXIT_CRITICAL();	//退出临界段
 
   /* Start scheduler */
   osKernelStart();
-  
+
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */

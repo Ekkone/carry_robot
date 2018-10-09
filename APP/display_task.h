@@ -9,10 +9,13 @@
 #define __DISPLAYTASK_H
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
 #include "bsp.h"
 #include "pid.h"
 #include "Pixy_Camera.h"
+#include "AX-12A.h"
+
 
 /* Private function prototypes -----------------------------------------------*/
 

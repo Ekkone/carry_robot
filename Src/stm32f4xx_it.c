@@ -38,8 +38,9 @@
 
 /* USER CODE BEGIN 0 */
 #include "Pixy_Camera.h"
+#include "AX-12A.h"
 unsigned int  USART_Counter=0;
-//USART2中断     暂时改为Pixy摄像头接收数据 
+
 /*Pixy变量*/
 uint8_t RePixy_buf[18],Re_Counter = 0;
 uint8_t ReSign_OK = 0;
@@ -53,10 +54,14 @@ extern Pixy_Color Pixy;
 float Distance = 0;				       //距离
 uint8_t Laser_buff[20] = {0};    //缓存
 uint8_t buff = 0;
+/*AX-12A数据*/
+AX_RxMsgTypeDef receive;  //接受结构体
+uint8_t ch[20] = {0};   //缓存
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
 extern UART_HandleTypeDef huart4;
+extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart1;
 
 /******************************************************************************/
@@ -209,6 +214,20 @@ void UART4_IRQHandler(void)
   /* USER CODE BEGIN UART4_IRQn 1 */
 
   /* USER CODE END UART4_IRQn 1 */
+}
+
+/**
+* @brief This function handles UART5 global interrupt.
+*/
+void UART5_IRQHandler(void)
+{
+  /* USER CODE BEGIN UART5_IRQn 0 */
+
+  /* USER CODE END UART5_IRQn 0 */
+  HAL_UART_IRQHandler(&huart5);
+  /* USER CODE BEGIN UART5_IRQn 1 */
+
+  /* USER CODE END UART5_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
@@ -370,6 +389,90 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 //  }
 //   HAL_UART_Receive_IT(&huart4,Laser_buff,8);
  }
+  else if(huart->Instance == UART5)
+  {
+//    int state = 0;
+//    static uint8_t step = 0,num = 0,i = 0;
+//    switch(step)
+//    {
+//      case 0:
+//        if(ch ==  0xff)
+//        {
+//          receive.begin_1 = ch;
+//          step++;
+//          break;
+//        }
+//        else break;
+//      case 1:
+//        if(ch ==  0xff)
+//        {
+//          receive.begin_2 = ch;
+//          step++;
+//          break;
+//        }
+//        else break;
+//      case 2:
+//        {
+//          receive.ID = ch;
+//          step++;
+//          break;
+//        }
+//      case 3:
+//        {
+//          receive.LENGTH = ch;
+//          num = ch;
+//          step++;
+//          break;
+//        }
+//      case 4:
+//        {
+//          receive.ERROR = ch;
+//          step++;
+//          break;
+//        }
+//      case 5:
+//        {
+//          if(i < num)
+//          {
+//            receive.PARAMETER[i] = ch;
+//            i++;
+//            break;
+//          }
+//          else
+//          {
+//            step++;
+//            break;
+//          }
+//        }
+//      case 6:
+//        {
+//          receive.CHECK_SUM = ch;
+//          step = 0;
+//          break;
+//        }
+//    }
+
+    if(ch[0] == 0xff && ch[1] == 0xff)
+    {
+      receive.ID = ch[2];
+      receive.LENGTH = ch[3];    
+      receive.ERROR = ch[4];
+      if(ch[3])
+      {
+        receive.PARAMETER[ch[3] + 1] = ch[ch[3]--];
+      }
+      receive.CHECK_SUM = ch[5 + receive.LENGTH];
+      
+      
+      
+    }
+    
+   if(HAL_BUSY ==  HAL_UART_Receive_IT(&huart5,ch,10))
+   {
+//    while(1);
+   }
+//    __HAL_UART_ENABLE_IT(&huart5,UART_IT_RXNE);
+  }
 }
-/* USER CODE END 1*/
+/* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
