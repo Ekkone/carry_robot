@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>?鴙樏??鴙樏?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -159,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>679</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222682</Address>
+          <Address>134222602</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>630</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222532</Address>
+          <Address>134222452</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -189,9 +188,9 @@
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>454</LineNumber>
+          <LineNumber>470</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222446</Address>
+          <Address>134222366</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -200,39 +199,39 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>../Src/stm32f4xx_it.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\carry_robot\../Src/stm32f4xx_it.c\454</Expression>
+          <Expression>\\carry_robot\../Src/stm32f4xx_it.c\470</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>19</LineNumber>
+          <LineNumber>21</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134223420</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\BSP\bsp.c</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\APP\run_task.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\carry_robot\../APP/run_task.c\21</Expression>
         </Bp>
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>470</LineNumber>
+          <LineNumber>392</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134222306</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
+          <BreakIfRCount>1</BreakIfRCount>
           <Filename>../Src/stm32f4xx_it.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\carry_robot\../Src/stm32f4xx_it.c\392</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -302,6 +301,11 @@
           <count>0</count>
           <WinNumber>2</WinNumber>
           <ItemText>transmit.begin_2</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>ch</ItemText>
         </Ww>
       </WatchWindow2>
       <MemoryWindow1>

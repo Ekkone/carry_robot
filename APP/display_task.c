@@ -62,6 +62,9 @@ void Display_Task(void const * argument)
       num++;
     }
     
+    
+    /*恣返公嘔返。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。*/
+    
     osDelay(5);
   }
   
