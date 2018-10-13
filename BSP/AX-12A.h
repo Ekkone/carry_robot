@@ -45,10 +45,16 @@ typedef struct
   
 }AX_RxMsgTypeDef;
 
-
-
-void Set_AX(uint8_t id,uint16_t speed,uint16_t position);
-void Write_AX(uint8_t id,uint16_t adress,uint16_t data,UART_HandleTypeDef *huart);
+void AX_Init(void);
+void uart_t(uint8_t data);
+void Set_AX11(uint16_t angle,uint16_t speed,uint8_t direction);
+void Set_AX6(uint16_t angle,uint16_t speed);
+void Set_AX8(uint16_t angle,uint16_t speed);
+void Set_AX18(uint16_t angle,uint16_t speed);
+void Set_AX9(uint16_t angle,uint16_t speed);
+void Set_AX5(uint16_t angle,uint16_t speed);
+void Set_AX14(uint16_t angle,uint16_t speed);
+void Set_AX7(uint16_t angle,uint16_t speed);
 
 
 

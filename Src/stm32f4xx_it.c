@@ -54,9 +54,8 @@ extern Pixy_Color Pixy;
 float Distance = 0;				       //距离
 uint8_t Laser_buff[20] = {0};    //缓存
 uint8_t buff = 0;
-/*AX-12A数据*/
-AX_RxMsgTypeDef receive;  //接受结构体
-uint8_t ch[20] = {0};   //缓存
+
+
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -389,89 +388,21 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 //  }
 //   HAL_UART_Receive_IT(&huart4,Laser_buff,8);
  }
-  else if(huart->Instance == UART5)
-  {
-//    int state = 0;
-//    static uint8_t step = 0,num = 0,i = 0;
-//    switch(step)
-//    {
-//      case 0:
-//        if(ch ==  0xff)
-//        {
-//          receive.begin_1 = ch;
-//          step++;
-//          break;
-//        }
-//        else break;
-//      case 1:
-//        if(ch ==  0xff)
-//        {
-//          receive.begin_2 = ch;
-//          step++;
-//          break;
-//        }
-//        else break;
-//      case 2:
-//        {
-//          receive.ID = ch;
-//          step++;
-//          break;
-//        }
-//      case 3:
-//        {
-//          receive.LENGTH = ch;
-//          num = ch;
-//          step++;
-//          break;
-//        }
-//      case 4:
-//        {
-//          receive.ERROR = ch;
-//          step++;
-//          break;
-//        }
-//      case 5:
-//        {
-//          if(i < num)
-//          {
-//            receive.PARAMETER[i] = ch;
-//            i++;
-//            break;
-//          }
-//          else
-//          {
-//            step++;
-//            break;
-//          }
-//        }
-//      case 6:
-//        {
-//          receive.CHECK_SUM = ch;
-//          step = 0;
-//          break;
-//        }
-//    }
+  
+   
+  
+}
 
-    if(ch[0] == 0xff && ch[1] == 0xff)
-    {
-      receive.ID = ch[2];
-      receive.LENGTH = ch[3];    
-      receive.ERROR = ch[4];
-      if(ch[3])
-      {
-        receive.PARAMETER[ch[3] + 1] = ch[ch[3]--];
-      }
-      receive.CHECK_SUM = ch[5 + receive.LENGTH];
-      
-      
-      
-    }
-    
-   if(HAL_BUSY ==  HAL_UART_Receive_IT(&huart5,ch,10))
-   {
-//    while(1);
-   }
-//    __HAL_UART_ENABLE_IT(&huart5,UART_IT_RXNE);
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+  if(huart->Instance == UART5)
+  {
+      /* Enable the UART Error Interrupt: (Frame error, noise error, overrun error) */
+    SET_BIT(huart->Instance->CR3, USART_CR3_EIE);
+
+    /* Enable the UART Parity Error and Data Register not empty Interrupts */
+    SET_BIT(huart->Instance->CR1, USART_CR1_PEIE | USART_CR1_RXNEIE);
   }
 }
 /* USER CODE END 1 */
