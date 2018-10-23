@@ -12,7 +12,7 @@
 extern Pixy_Color Pixy;
 extern uint8_t RePixy_buf[18];
 extern float Distance;				       //距离
-
+extern uint8_t buff;
 
 /* Internal variables --------------------------------------------------------*/
 
@@ -21,19 +21,36 @@ extern float Distance;				       //距离
 void Display_Task(void const * argument)
 {
   AX_Init();
+	
+	
+	//单位：角度：限制角度0~300
+	//      RPM：最大转速114RPM
+	float servo[7][6] = {
+					{100,100,100,100,100,50},//稳定姿态
+					{100,100,100,100,100,50},//抓取物块
+					{100,100,100,100,100,50},//放下物块
+					{100,100,100,100,100,50},//中间姿态
+					{100,100,100,100,100,50},//放开爪子
+					{100,100,100,100,100,50},//抓紧爪子
+					{100,100,100,100,100,50},//预留姿态
+					};
+	servo_set(servo);
+					
   for(;;)
   {
-//    Pixy_Camera_Data();
-//    LCD_Display_float(Pixy.Pixy_Color_Sig,1,1);
-//    LCD_Display_float(Pixy.Pixy_Color_PosX,1,2);
-//    LCD_Display_float(Pixy.Pixy_Color_PosY,1,3);
-//    LCD_Display_int(angle * 0.293,1,1);
+    LCD_Display_float(Pixy.Pixy_Color_Sig,1,1);
+    LCD_Display_float(Pixy.Pixy_Color_PosX,1,2);
+    LCD_Display_float(Pixy.Pixy_Color_PosY,1,3);
     
-    Set_AX11(0x3ff,1024,1);
-
-
     
+    
+    //LCD_Display_int(angle * 0.293,1,1);
+		
+//    Set_AX14(0x0,0xff);
+//    Set_AX11(0x0,0x3ff);
 
+
+		 StablePose();	//0
 
      osDelay(5);
   }

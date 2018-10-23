@@ -63,6 +63,8 @@ extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart1;
 
+extern TIM_HandleTypeDef htim1;
+
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
@@ -173,7 +175,6 @@ void SysTick_Handler(void)
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
   osSystickHandler();
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
@@ -186,6 +187,20 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f4xx.s).                    */
 /******************************************************************************/
+
+/**
+* @brief This function handles TIM1 update interrupt and TIM10 global interrupt.
+*/
+void TIM1_UP_TIM10_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 0 */
+
+  /* USER CODE END TIM1_UP_TIM10_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim1);
+  /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 1 */
+
+  /* USER CODE END TIM1_UP_TIM10_IRQn 1 */
+}
 
 /**
 * @brief This function handles USART1 global interrupt.
@@ -234,7 +249,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if(huart->Instance==USART1)  //PIXY接受中断
   {
-    HAL_UART_Receive_IT(&huart1,&Pixy_Temp[Re_Counter],1);
   
 		if(Re_Counter == 0 && Pixy_Temp[0] != 0x55 && Pixy_Temp[0] != 0x56)  USART1_FAIL = 1; //如果不是帧头返回
 		if(USART1_FAIL == 0)//通信成功
@@ -277,13 +291,15 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 						Re_Counter = 0;  //重新赋值，准备下一帧数据的接收
 						ReSign_OK = 0x04;
 					}
+          Pixy_Camera_Data();
+
 		    }
 				
 	    }
 		else 
 		{
-			   USART1_FAIL=0;
-			   Re_Counter=0;
+			   USART1_FAIL = 0;
+			   Re_Counter  = 0;
 		}
 	
 		
@@ -294,7 +310,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     {
       Pixy_times = 0;
     }
-    
     HAL_UART_Receive_IT(&huart1,&Pixy_Temp[Re_Counter],1);
   }
   else if(huart->Instance == UART4)  //激光测距接收中断

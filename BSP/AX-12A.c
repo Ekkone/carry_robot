@@ -29,9 +29,9 @@ void AX_Init(void)
       uart_t(id[i]);
       uart_t(0x00);
       uart_t(0x00);  
-      uart_t(0x00);
-      uart_t(0x00);
-      uart_t(~((0x94 + (id[i])) & 0xff));
+      uart_t(0xff);
+      uart_t(0x03);
+      uart_t(~((0x94 + 0x03 + 0xff + (id[i])) & 0xff));
     }
 }
 void uart_t(uint8_t data)
@@ -43,54 +43,32 @@ void uart_t(uint8_t data)
 }
 
 
-void Set_AX11(uint16_t angle,uint16_t speed,uint8_t direction)
+
+void Set_AX11(uint16_t angle,uint16_t speed)
 {
   uint8_t id = 0x03;
   uint8_t low = angle;
   uint8_t high = angle >> 8;
   uint8_t low2 = speed;
-  uint8_t high2 = (speed >> 8) | (direction << 2);
+  uint8_t high2 = speed >> 8;
 
   uart_t(0xff);
   uart_t(0xff);
   uart_t(0xfe);
-  uart_t(0x07);
+  uart_t(0x0b);
   uart_t(0x83);
   uart_t(0x1c);
-  uart_t(0x02);
+  uart_t(0x06);
   uart_t(id);
   uart_t(0x20);
-  uart_t(0x20);
-  uart_t(~((0xe6 + (id)) & 0xff));
-  
-  uart_t(0xff);
-  uart_t(0xff);
-  uart_t(0xfe);
-  uart_t(0x07);
-  uart_t(0x83);
-  uart_t(0x20);
-  uart_t(0x02);
-  uart_t(id);
+  uart_t(0x20);  
   uart_t(low);
   uart_t(high);
   uart_t(low2);
   uart_t(high2);
-  uart_t(~((0xaa + (id) + (high2) + (low2)) & 0xff));
-  
-//  uart_t(0xff);
-//  uart_t(0xff);
-//  uart_t(0xfe);
-//  uart_t(0x09);
-//  uart_t(0x83);
-//  uart_t(0x1e);
-//  uart_t(0x04);
-//  uart_t(id); 
-//  uart_t(low2);
-//  uart_t(high2);
-//  uart_t(~((0xac + (id) + (high2) + (low2)) & 0xff));
+  uart_t(~((0xee + (id) + (high) + (low) + (high2) + (low2)) & 0xff));
 
 }
-
 
 void Set_AX6(uint16_t angle,uint16_t speed)
 {

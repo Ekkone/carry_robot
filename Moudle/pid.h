@@ -25,6 +25,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 #include "fuzzy_pid.h"
+/* Exported types ------------------------------------------------------------*/
 enum {
     LLAST	= 0,
     LAST 	= 1,
@@ -75,6 +76,7 @@ typedef struct __pid_t
     void (*f_pid_reset)(struct __pid_t *pid, float p, float i, float d,float e_max,float ec_max);		//pid三个参数修改
 
 } pid_t;
+
 
 
 void PID_struct_init(

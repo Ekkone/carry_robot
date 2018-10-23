@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;   ../Drivers/STM32F4xx_HAL_Driver/Inc;   ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;   ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;   ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;   ../Middlewares/Third_Party/FreeRTOS/Source/include;   ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;   ../Drivers/CMSIS/Include;   ..\BSP;   ..\APP;   ..\Moudle</IncludePath>
+              <IncludePath>../Inc;    ../Drivers/STM32F4xx_HAL_Driver/Inc;    ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;    ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;    ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;    ../Middlewares/Third_Party/FreeRTOS/Source/include;    ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;    ../Drivers/CMSIS/Include;    ..\BSP;    ..\APP;    ..\Moudle</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -411,6 +411,11 @@
               <FileType>1</FileType>
               <FilePath>../Src/stm32f4xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_hal_timebase_TIM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/stm32f4xx_hal_timebase_TIM.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -451,20 +456,45 @@
               <FileType>1</FileType>
               <FilePath>..\Moudle\pid.c</FilePath>
             </File>
+            <File>
+              <FileName>Mechanical_arm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Moudle\Mechanical_arm.c</FilePath>
+            </File>
+            <File>
+              <FileName>planning.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Moudle\planning.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>APP</GroupName>
           <Files>
             <File>
-              <FileName>run_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\APP\run_task.c</FilePath>
-            </File>
-            <File>
               <FileName>display_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\display_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>correct_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\correct_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>decision_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\decision_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>location_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\location_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>test_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\test_task.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -59,7 +59,10 @@
 osThreadId defaultTaskHandle;
 
 /* USER CODE BEGIN Variables */
-osThreadId run_taskHandle;
+osThreadId correct_taskHandle;
+osThreadId decision_taskHandle;
+osThreadId location_taskHandle;
+osThreadId test_taskHandle;
 osThreadId display_taskHandle;
 /* USER CODE END Variables */
 
@@ -69,7 +72,10 @@ void StartDefaultTask(void const * argument);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* USER CODE BEGIN FunctionPrototypes */
-extern void Run_Task(void const * argument);
+extern void Correct_Task(void const * argument);
+extern void Decision_Task(void const * argument);
+extern void Location_Task(void const * argument);
+extern void Test_Task(void const * argument);
 extern void Display_Task(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
@@ -100,8 +106,17 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  osThreadDef(run_task, Run_Task, osPriorityHigh, 0, 128);
-  run_taskHandle = osThreadCreate(osThread(run_task), NULL);
+  osThreadDef(correct_task, Correct_Task, osPriorityHigh, 0, 128);
+  correct_taskHandle = osThreadCreate(osThread(correct_task), NULL);
+  
+  osThreadDef(decision_task, Decision_Task, osPriorityHigh, 0, 128);
+  decision_taskHandle = osThreadCreate(osThread(decision_task), NULL);
+  
+  osThreadDef(location_task, Location_Task, osPriorityHigh, 0, 128);
+  location_taskHandle = osThreadCreate(osThread(location_task), NULL);
+  
+  osThreadDef(test_task, Test_Task, osPriorityHigh, 0, 128);
+  test_taskHandle = osThreadCreate(osThread(test_task), NULL);
 
   osThreadDef(display_task, Display_Task, osPriorityHigh, 0, 512);
   display_taskHandle = osThreadCreate(osThread(display_task), NULL);
