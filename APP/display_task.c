@@ -21,6 +21,7 @@ void Display_Task(void const * argument)
   for(;;)
   {
 //    Pixy_Camera_Data();
+	//	asd asd asd asd 
 //    LCD_Display_float(Pixy.Pixy_Color_Sig,1,1);
 //    LCD_Display_float(Pixy.Pixy_Color_PosX,1,2);
 //    LCD_Display_float(Pixy.Pixy_Color_PosY,1,3);
