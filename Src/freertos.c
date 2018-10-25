@@ -59,7 +59,10 @@
 osThreadId defaultTaskHandle;
 
 /* USER CODE BEGIN Variables */
-osThreadId run_taskHandle;
+osThreadId correct_taskHandle;
+osThreadId decision_taskHandle;
+osThreadId location_taskHandle;
+osThreadId test_taskHandle;
 osThreadId display_taskHandle;
 /* USER CODE END Variables */
 
@@ -69,7 +72,10 @@ void StartDefaultTask(void const * argument);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* USER CODE BEGIN FunctionPrototypes */
-extern void Run_Task(void const * argument);
+extern void Correct_Task(void const * argument);
+extern void Decision_Task(void const * argument);
+extern void Location_Task(void const * argument);
+extern void Test_Task(void const * argument);
 extern void Display_Task(void const * argument);
 /* USER CODE END FunctionPrototypes */
 
@@ -100,8 +106,17 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  osThreadDef(run_task, Run_Task, osPriorityHigh, 0, 128);
-  run_taskHandle = osThreadCreate(osThread(run_task), NULL);
+  osThreadDef(correct_task, Correct_Task, osPriorityHigh, 0, 128);
+  correct_taskHandle = osThreadCreate(osThread(correct_task), NULL);
+  
+  osThreadDef(decision_task, Decision_Task, osPriorityHigh, 0, 128);
+  decision_taskHandle = osThreadCreate(osThread(decision_task), NULL);
+  
+  osThreadDef(location_task, Location_Task, osPriorityHigh, 0, 128);
+  location_taskHandle = osThreadCreate(osThread(location_task), NULL);
+  
+  osThreadDef(test_task, Test_Task, osPriorityHigh, 0, 128);
+  test_taskHandle = osThreadCreate(osThread(test_task), NULL);
 
   osThreadDef(display_task, Display_Task, osPriorityHigh, 0, 512);
   display_taskHandle = osThreadCreate(osThread(display_task), NULL);
@@ -122,18 +137,18 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
 		
-		printf("\n\n");
-		printf("a629          169       13222222247    028         b561   132222222257     8225b            0229\n");
-		printf("a63347        169     a66a       025b  028         b561   1347      8247   82669           a6669\n");
-		printf("a697528       169    a65b              028         b561   1347       829   820020         139069\n");
-		printf("a69  829      169   b56a               028         b561   1347       020   820 96a       7447a69\n");
-		printf("a69   1331    169   1347               028         b561   1347     1320    820 b561     b531 a69\n");
-		printf("a69     928   169   1347               028         b561   1322662238b      820  7447    96a  a69\n");
-		printf("a69      825b 169   b56a               028         b561   1347   825       820   135b  828   a69\n");
-		printf("a69       7461139    a647         71   a25         1347   1347    1331     820    a69 a60    a69\n");
-		printf("a69         92369     166a       929    025b      a661    1347     b528    820     82435b    a69\n");
-		printf("a69          a629       1322222229b      b922222223a      1347       025   820      0247     a69\n");
-		printf("\n\n");
+//		printf("\n\n");
+//		printf("a629          169       13222222247    028         b561   132222222257     8225b            0229\n");
+//		printf("a63347        169     a66a       025b  028         b561   1347      8247   82669           a6669\n");
+//		printf("a697528       169    a65b              028         b561   1347       829   820020         139069\n");
+//		printf("a69  829      169   b56a               028         b561   1347       020   820 96a       7447a69\n");
+//		printf("a69   1331    169   1347               028         b561   1347     1320    820 b561     b531 a69\n");
+//		printf("a69     928   169   1347               028         b561   1322662238b      820  7447    96a  a69\n");
+//		printf("a69      825b 169   b56a               028         b561   1347   825       820   135b  828   a69\n");
+//		printf("a69       7461139    a647         71   a25         1347   1347    1331     820    a69 a60    a69\n");
+//		printf("a69         92369     166a       929    025b      a661    1347     b528    820     82435b    a69\n");
+//		printf("a69          a629       1322222229b      b922222223a      1347       025   820      0247     a69\n");
+//		printf("\n\n");
 		
     osDelay(1);
   }

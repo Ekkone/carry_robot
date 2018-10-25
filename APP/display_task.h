@@ -15,7 +15,7 @@
 #include "pid.h"
 #include "Pixy_Camera.h"
 #include "AX-12A.h"
-
+#include "Mechanical_arm.h"
 
 /* Private function prototypes -----------------------------------------------*/
 

@@ -10,9 +10,26 @@
 
 /* Includes ------------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
-
+#include "main.h"
 /* Private function prototypes -----------------------------------------------------*/
 #define BEGIN 0XFF
+
+#if car_one
+
+#define	Set_AX11 ax12a1
+#define Set_AX6  ax12a2
+#define Set_AX8  ax12a3
+#define Set_AX18 ax12a4
+	
+#endif
+
+#if car_two
+#define	Set_AX9  ax12a1
+#define Set_AX5  ax12a2
+#define Set_AX14 ax12a3
+#define Set_AX7  ax12a4
+
+#endif
 
 typedef enum
 {
@@ -45,12 +62,16 @@ typedef struct
   
 }AX_RxMsgTypeDef;
 
-
-
-void Set_AX(uint8_t id,uint16_t speed,uint16_t position);
-void Write_AX(uint8_t id,uint16_t adress,uint16_t data,UART_HandleTypeDef *huart);
-
-
+void AX_Init(void);
+void uart_t(uint8_t data);
+void Set_AX11(uint16_t angle,uint16_t speed);
+void Set_AX6(uint16_t angle,uint16_t speed);
+void Set_AX8(uint16_t angle,uint16_t speed);
+void Set_AX18(uint16_t angle,uint16_t speed);
+void Set_AX9(uint16_t angle,uint16_t speed);
+void Set_AX5(uint16_t angle,uint16_t speed);
+void Set_AX14(uint16_t angle,uint16_t speed);
+void Set_AX7(uint16_t angle,uint16_t speed);
 
 
 

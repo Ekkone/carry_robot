@@ -49,13 +49,16 @@ void Pixy_Camera_Data(void)
 	{
 		//单一模式1
 		case 0x01:*Temp = *RePixy_buf;
-		          Pixy.Pixy_Color_Sig=Temp[6] | Temp[7] << 8;    //颜色记号
-		          Pixy.Pixy_Color_PosX=Temp[8] | Temp[9] << 8;   //X坐标
-		          Pixy.Pixy_Color_PosY=Temp[10] | Temp[11] << 8; //Y坐标
-		          Pixy.Pixy_Color_Width=Temp[12] | Temp[13] << 8; //长
-		          Pixy.Pixy_Color_Height=Temp[14] | Temp[15] << 8;//高 
-				  ReSign_OK=0x00;
-		          Camera_Flag=0;   //有图
+              if(((Temp[3] << 8) | Temp[2]) == (Temp[6] + Temp[7] + Temp[8] + Temp[9] + Temp[10] + Temp[11] + Temp[12] + Temp[13] + Temp[14] + Temp[15]))
+              {
+                Pixy.Pixy_Color_Sig=Temp[6] | (Temp[7] << 8);    //颜色记号
+                Pixy.Pixy_Color_PosX=Temp[8] | Temp[9] << 8;   //X坐标
+                Pixy.Pixy_Color_PosY=Temp[10] | Temp[11] << 8; //Y坐标
+                Pixy.Pixy_Color_Width=Temp[12] | Temp[13] << 8; //长
+                Pixy.Pixy_Color_Height=Temp[14] | Temp[15] << 8;//高 
+                ReSign_OK=0x00;
+                Camera_Flag=0;   //有图
+              }
 		          break;
 		//CC模式
 		case 0x03:*Temp = *RePixy_buf;

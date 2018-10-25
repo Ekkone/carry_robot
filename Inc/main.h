@@ -73,8 +73,16 @@
 #ifdef __cplusplus
  extern "C" {
 #endif
+	 
+#define car_one 1	 
+#define car_two 0	 
 void _Error_Handler(char *, int);
 
+	 
+	 
+	 
+	 
+	 
 #define Error_Handler() _Error_Handler(__FILE__, __LINE__)
 #ifdef __cplusplus
 }

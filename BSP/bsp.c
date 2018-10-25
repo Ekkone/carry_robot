@@ -16,7 +16,7 @@ void BSP_Init(void)
   ROC_LCD_Init();
   HAL_UART_Receive_IT(&huart1,Pixy_Temp,1);   //打开PIXY数据接受中断
   HAL_UART_Receive_IT(&huart4,&buff,1);   //打开激光测距数据接受中断
-  //HAL_UART_Receive_IT(&huart5,ch,10);  //AX-12A数据接受中断
+//  HAL_UART_Receive_IT(&huart5,ch,7);  //AX-12A数据接受中断
 }
 
 
