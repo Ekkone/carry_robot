@@ -73,7 +73,7 @@ static int angle[7][5] = {0};//5种动作，5个舵机
 **/
 void servo_set(float buff[7][6])
 {
-	for(uint8_t i = 0;i < 5;i++)
+	for(uint8_t i = 0;i < 7;i++)
 	{
 		speed[i] = (int)(buff[i][5] * RPM);
 		for(uint8_t j = 0;j < 5;j++)
