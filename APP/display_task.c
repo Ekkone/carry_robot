@@ -9,10 +9,7 @@
 #include "display_task.h"
 
 /* External variables --------------------------------------------------------*/
-extern Pixy_Color Pixy;
-extern uint8_t RePixy_buf[18];
-extern float Distance;				       //æ‡¿Î
-extern uint8_t buff;
+
 
 /* Internal variables --------------------------------------------------------*/
 
@@ -43,14 +40,17 @@ void Display_Task(void const * argument)
     LCD_Display_float(Pixy.Pixy_Color_PosY,1,3);
     
     
-    
+    printf("sign:%d\n",Pixy.Pixy_Color_Sig);
+    printf("x:%d\n",Pixy.Pixy_Color_PosX);
+    printf("y:%d\n",Pixy.Pixy_Color_PosY);
+
     //LCD_Display_int(angle * 0.293,1,1);
 		
 //    Set_AX14(0x0,0xff);
 //    Set_AX11(0x0,0x3ff);
 
 
-		 StablePose();	//0
+//		 StablePose();	//0
 
      osDelay(5);
   }

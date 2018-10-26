@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp
+--cpu Cortex-M4.fp
 "carry_robot\main.o"
 "carry_robot\gpio.o"
 "carry_robot\freertos.o"
@@ -6,8 +6,8 @@
 "carry_robot\stm32f4xx_it.o"
 "carry_robot\stm32f4xx_hal_msp.o"
 "carry_robot\stm32f4xx_hal_timebase_tim.o"
-"carry_robot\rbc_lcd.o"
 "carry_robot\bsp.o"
+"carry_robot\rbc_lcd.o"
 "carry_robot\pixy_camera.o"
 "carry_robot\ax-12a.o"
 "carry_robot\fuzzy_pid.o"
@@ -46,6 +46,6 @@
 "carry_robot\cmsis_os.o"
 "carry_robot\system_stm32f4xx.o"
 --library_type=microlib --strict --scatter "carry_robot\carry_robot.sct"
---summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "carry_robot.map" -o carry_robot\carry_robot.axf
